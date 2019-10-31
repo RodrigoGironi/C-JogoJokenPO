@@ -1,0 +1,550 @@
+﻿<!DOCTYPE html>
+<html lang="en" ng-app="jk">
+<head>
+    <title>Jokenpô Studio</title>
+    <meta charset="utf-8">
+    <!--meta name="viewport" content="width=device-width, initial-scale=1"-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!--link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!--script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script-->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.5/angular.min.js"></script>
+    <style>
+
+        .sidenav {
+          padding-top: 20px;
+          background-color: #f1f1f1;
+          height: 100%;
+        }
+
+         footer {
+            padding: 50px;
+        }
+
+        /* On small screens, set height to 'auto' for sidenav and grid */
+        @media screen and (max-width: 767px) {
+          .sidenav {
+            height: auto;
+            padding: 15px;
+          }
+          .row.content {height:auto;}
+        }
+
+        .img-rounded{
+            width: 60px;
+            height: 60px;
+            margin-left: 35%;
+            margin-top: 5%;
+        }
+        .img-conf {
+            width: 80px;
+            height: 80px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Controle de Historicos -->
+    <div ng-controller="jk_grid_historico">
+        <!--Controla Jogadores-->
+        <div ng-controller="jk_jogadores">
+            <!-- Controla Objetos-->
+            <div ng-controller="jk_objetos">
+                <!--Controla Partida -->
+                <div ng-controller="jk_partida">
+                    <!--Controla Jogadas-->
+                    <div ng-controller="jk_jogadas">
+                        <!--Controle Geral-->
+                        <div ng-controller="jk_controller">
+                            <div>
+                                <div class="container-fluid text-center" id="jkp">
+                                    <div class="row content">
+                                        <div class="col-sm-2 sidenav">
+                                            <!--Jogador Maquina-->
+                                            <div class="row">
+                                                <div class="card" style="width: 18rem;">
+                                                    <img ng-src="{{ jogador1.imagem }}" class="card-img-top img-rounded" alt="...">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title"><span class="label label-default">Jogador: {{jogador1.name}}</span></h5>
+                                                        <p class="card-text">
+                                                            <span class="label label-success">Total de Pontos Ganho: {{jogador1.totalpontos}}</span><br />
+                                                            <span class="label label-warning">Ultima Jogada: {{jogador1.ultimajogada}}</span><br />
+                                                        </p>
+                                                        <a href="#" class="btn btn btn-info">{{jogador1.name}}</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-8 text-left">
+                                            <!--Resultado da Jogada -->
+                                            <div class="row">
+                                                <div class="card text-center col-sm-12">
+                                                    <div class="card-header">
+                                                        <p>Partida: {{ partida.idPartida }}   Jogada: {{ Jogada.idJogo }}</p>
+                                                    </div>
+                                                    <div class="card-body">
+                                                        <div class="row">
+                                                            <div class="col-sm-6">
+                                                                <div class="card">
+                                                                    <div class="card-body">
+                                                                        <h5 class="card-title"><p class="text-center">Objeto: {{ Objeto1.name }}</p><br /></h5>
+                                                                        <p class="card-text"><img ng-src="{{ Objeto1.imagem }}" class="img-conf" alt="img"></p>
+                                                                        <!--a href="#" class="btn btn-primary">Go somewhere</a-->
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-6">
+                                                                <div class="card">
+                                                                    <div class="card-body">
+                                                                        <h5 class="card-title"><p class="text-center">Objeto: {{ Objeto2.name }}</p><br /></h5>
+                                                                        <p class="card-text"><img ng-src="{{ Objeto2.imagem }}" class="img-conf" alt="img"></p>
+                                                                        <!--a href="#" class="btn btn-primary">Go somewhere</a-->
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card-footer text-muted">
+                                                        <!--linha de resposta de erro ou sucesso-->
+                                                        <div class="row">
+                                                            <div class="col-sm-12">
+                                                                <div class="alert alert-info" role="alert">
+                                                                    <p class="text-center">
+                                                                        {{Error}}
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!--inicio Dropdow Objetos-->
+                                                        <div class="row">
+                                                            <div class="dropdown" ng-init="getObjetos()">
+                                                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                    Escolha um Objeto
+                                                                </button>
+                                                                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                                                    <button ng-repeat="obj2 in objetos track by $index" class="dropdown-item" type="button" ng-click="setObjto(obj2);">{{ obj2.Nome }}</button>
+                                                                </div>
+                                                            </div>
+                                                            <div>
+                                                                <button class="btn btn-info" type="button" ng-click="initJogada();">Enviar Jogada</button>
+                                                            </div>
+                                                            <div>
+                                                                <button class="btn btn-info" type="button" ng-click="reiniciarJogo();">Reiniciar Jogo</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-sm-2 sidenav">
+                                            <!--Jogador Atual-->
+                                            <div class="row">
+                                                <div class="card" style="width: 18rem;">
+                                                    <img ng-src="{{ jogador2.imagem }}" class="card-img-top img-rounded" alt="...">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title"><span class="label label-default">Jogador: {{jogador2.name}}</span></h5>
+                                                        <p class="card-text">
+                                                            <span class="label label-success">Total de Pontos Ganho: {{jogador2.totalpontos}}</span><br />
+                                                            <span class="label label-warning">Ultima Jogada: {{jogador2.ultimajogada}}</span><br />
+                                                        </p>
+                                                        <a href="#" class="btn btn btn-info">{{jogador2.name}}</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="container-fluid text-center">
+                                        <div>
+                                            <!--inicio Historico-->                                            
+                                            <footer class="">
+                                                <table class="table table-bordered">
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col">#</th>
+                                                            <th>Partida</th>
+                                                            <th scope="col">Jogo</th>
+                                                            <th scope="col">{{jogador1.name}}</th>
+                                                            <th scope="col">{{jogador2.name}}</th>
+                                                            <th scope="col">Ganhador</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr ng-repeat="p in historico" ng-init="outerIndex = $index">
+                                                            <th>{{ outerIndex }}</th>
+                                                            <th>{{ p.partida }}</th>
+                                                            <th>{{ p.jogo }}</th>
+                                                            <th>{{ p.jogador1 }}</th>
+                                                            <th>{{ p.jogador2 }}</th>
+                                                            <th>{{ p.ganhador }}</th>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </footer>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        var app = angular.module('jk', []);
+
+
+        app.controller('jk_grid_historico', function ($scope) {
+
+            //iniciar
+            $scope.historico = [];
+
+            //traz os jogos realizados
+            $scope.itemJogada = function (dados) {
+
+                console.log("itemjogadas-item", dados);
+                var itemJ = {
+                    partida: dados.idPartida,
+                    jogo: dados.idJogo,
+                    jogador1: dados.Jogador1,
+                    jogador2: dados.Jogador2,
+                    ganhador: dados.Ganhador
+                }
+
+                $scope.historico.push(itemJ);
+                console.log("resultado", $scope.historico);
+                //alert($scope.historico);
+            };
+
+        });
+
+        app.controller('jk_jogadores', function ($scope, $http) {
+
+            //configura jogadores
+            var configJogadores = function (dados) {
+
+                if (dados != null || dados != "") {
+                    $scope.jogador1 = {
+                        id: 1,
+                        name: 'Máquina',
+                        totalpontos: 0,
+                        ultimajogada: '',
+                        jogadaatual: '',
+                        imagem: '../fonts/img/usuariomaquina.jpg'
+                    };
+
+                    $scope.jogador2 = {
+                        id: dados.id,
+                        name: dados.Nome,
+                        totalpontos: 0,
+                        ultimajogada: '',
+                        jogadaatual: '',
+                        imagem: '../fonts/img/usuario.jpg'
+                    };
+                }
+                else {
+                    $scope.Error = "Dados de jogadores não configurado corretamente. Favor verificar.";
+                }
+
+            };
+
+            //traz os jogadores
+            $scope.getJogador = function (iduser) {
+
+
+                $http({
+                    method: "GET",
+                    url: "/api/Jogador/" + iduser,
+                    async: true
+                }).then(function mySuccess(response) {
+                    console.log("user>>", response.data);
+                    console.log("Nome user>>", response.data.Nome);
+                    configJogadores(response.data);
+
+                }, function myError(response) {
+
+                    $scope.Error = response.statusText;
+                });
+
+            };
+
+            $scope.setJogadores = function (Jg1, Jg2) {
+
+                $scope.jogador1.totalpontos += Jg1.totalpontos;
+                $scope.jogador1.ultimajogada = Jg1.ultimajogada;
+                $scope.jogador1.jogadaatual = Jg1.jogadaatual;
+
+                $scope.jogador2.totalpontos += Jg2.totalpontos;
+                $scope.jogador2.ultimajogada = Jg2.ultimajogada;
+                $scope.jogador2.jogadaatual = Jg2.jogadaatual;
+
+            };            
+
+        });
+
+        app.controller('jk_objetos', function ($scope, $http) {
+          
+            //configura o dropdow de escolhas
+            $scope.getObjetos = function () {
+
+                $http({
+                    method: "GET",
+                    url: "/api/Objetos",
+                    async: true
+                }).then(function mySuccess(response) {
+
+                    $scope.objetos = response.data;
+
+                }, function myError(response) {
+
+                    $scope.Error = response.statusText;
+                });
+            };
+
+            //atualiza quadros de objetos
+            $scope.setQuadroObjs = function (Obj1, Obj2) {
+
+                console.log("img", '../fonts/img/' + (Obj1.id == 1) ? 'pedra.jpg' : (Obj1.id == 2) ? 'papel.jpg' : (Obj1.id == 0) ? 'quest.jpg' : 'tesoura.jpg');
+
+                $scope.Objeto1 = {
+                    id: Obj1.id,
+                    name: (Obj1.id == 1) ? 'Pedra' : (Obj1.id == 2) ? 'Papel' : (Obj1.id == 0) ? '' : 'Tesoura',
+                    pontos: Obj1.pontos,
+                    imagem: (Obj1.id == 1) ? '../fonts/img/pedra.jpg' : (Obj1.id == 2) ? '../fonts/img/papel.jpg' : (Obj1.id == 0) ? '../fonts/img/quest.jpg' : '../fonts/img/tesoura.jpg'
+                };
+
+                $scope.Objeto2 = {
+                    id: Obj2.id,
+                    name: (Obj2.id == 1) ? 'Pedra' : (Obj2.id == 2) ? 'Papel' : (Obj2.id == 0) ? '' : 'Tesoura',
+                    pontos: Obj2.pontos,
+                    imagem: (Obj2.id == 1) ? '../fonts/img/pedra.jpg' : (Obj2.id == 2) ? '../fonts/img/papel.jpg' : (Obj2.id == 0) ? '../fonts/img/quest.jpg' : '../fonts/img/tesoura.jpg'
+                };                
+            };
+
+            $scope.setObjto = function (idObj) {
+
+                $scope.objEscolhido = idObj;
+                $scope.Error = "Você escolheu o Objeto - " + $scope.objEscolhido.Nome + ". Clique em 'Enviar Jogada' para realizar uma Jogada.";                              
+            };            
+
+        });
+
+        app.controller('jk_partida', function ($scope, $http) {
+
+            //criar uma partida
+            $scope.CriarPartida = function (iduser) {
+
+                $http({
+                    method: "POST",
+                    url: "/api/Partidas",
+                    async: true,
+                    data: { idPartida: null, Data: new Date(), idJogador: iduser }
+                }).then(function mySuccess(response) {
+                    //traz a partida
+                    $scope.partida = response.data;
+
+                }, function myError(response) {
+                    $scope.Error = response.statusText;
+                });
+            };            
+            
+        });
+
+        app.controller('jk_jogadas', function ($scope, $http) {
+
+            //cria jogada randominca
+            $scope.criaJogadaRam = function (TpObj) {
+
+                var idRetorno;
+
+                do{
+
+                    idRetorno = Math.floor(Math.random() * 3) + 1;
+
+                } while (TpObj == idRetorno)
+
+                console.log("criajogadaram", idRetorno);
+                return idRetorno;
+            };
+
+            //gerar comparacao e resultado
+            $scope.resultado = function (EscMaqina, EscJogador) {
+
+                var ganhador = 0;
+
+                switch (EscMaqina) {
+                    //pedra
+                    case 1: {
+                        if (EscJogador == 3) {
+                            ganhador = 1;
+                        }
+                    } break;
+                    //papel
+                    case 2: {
+                        if (EscJogador == 1) {
+                            ganhador = 1;
+                        }
+                    } break;
+                    //tesoura
+                    default: {
+                        if (EscJogador == 2) {
+                            ganhador = 1;
+                        }
+                    } break;
+
+                }
+
+                return ganhador;
+
+            };
+
+            $scope.iserirJogada = function (ganhador) {
+
+                if (ganhador == 0) {
+                    ganhador = $scope.jogador2.id
+                }
+                else
+                {
+                    ganhador = $scope.jogador1.id
+                }
+
+
+                $http({
+                    method: "POST",
+                    url: "/api/Jogos",
+                    async: true,
+                    data: {
+                            idJogo: null,
+                            idPartida: $scope.partida.idPartida,
+                            Ponto: 1,
+                            idGanhador: ganhador,
+                            Ganhador: (ganhador != 1) ? $scope.jogador2.name : $scope.jogador1.name,
+                            Jogador1: $scope.jogador1.jogadaatual,
+                            Jogador2: $scope.jogador2.jogadaatual
+                    }
+                }).then(function mySuccess(response) {
+                    //traz a jogada
+                    console.log("$http-resposta", response.data);
+                    $scope.Jogada = response.data;
+                    $scope.itemJogada($scope.Jogada);
+
+                }, function myError(response) {
+                    $scope.Error = response.statusText;
+                });
+
+            };
+
+
+            $scope.startJogada = function () {                
+
+                if ($scope.objEscolhido != null || $scope.objEscolhido != "") {
+
+                    //buscar a ultima jogada e atualizar
+                    var Jg1UltimaJogada = ($scope.jogador1.jogadaatual == '') ? $scope.jogador1.ultimajogada : $scope.jogador1.jogadaatual ;
+                    var Jg2UltimaJogada = ($scope.jogador2.jogadaatual == '') ? $scope.jogador2.ultimajogada : $scope.jogador2.jogadaatual;
+
+                    //criar jogada randomica para maquina
+                    var JogadaMaquina = $scope.criaJogadaRam($scope.objEscolhido.idObj);
+
+                    //comparar a jogada e ver quem ganhou
+                    var ganhador = $scope.resultado(JogadaMaquina, $scope.objEscolhido.idObj);                                          
+
+                    //atualizar jogadores
+                    var resJ1 = {
+                        totalpontos: (ganhador != 0) ? 1 : 0,
+                        ultimajogada: Jg1UltimaJogada,
+                        jogadaatual: ( JogadaMaquina == 1 ) ? 'Pedra' : ( JogadaMaquina == 2 ) ? 'Papel' : 'Tesoura'
+                    };
+                    var resJ2 = {
+                        totalpontos: (ganhador != 0) ? 0 : 1,
+                        ultimajogada: Jg2UltimaJogada,
+                        jogadaatual: ($scope.objEscolhido.idObj == 1) ? 'Pedra' : ($scope.objEscolhido.idObj == 2) ? 'Papel' : 'Tesoura'
+                    };
+
+                    console.log("resJ1", resJ1);
+                    $scope.setJogadores(resJ1, resJ2);
+                    console.log("Jogador1", $scope.jogador1);
+                    console.log("Jogador2", $scope.jogador2);
+
+                    //atualizar quadro de obj tela
+                    var ObjJ1 = {
+                        id: JogadaMaquina,
+                        pontos: (ganhador != 0) ? 1 : 0
+                    };
+
+                    var ObjJ2 = {
+                        id: $scope.objEscolhido.idObj,
+                        pontos: (ganhador != 0) ? 0 : 1
+                    };
+
+                    $scope.setQuadroObjs(ObjJ1, ObjJ2);
+
+                    //inserir ganhador e atualizar historico
+                    $scope.iserirJogada(ganhador);
+                    
+
+                }
+                else
+                {
+                    $scope.Error = "Escolha um tipo de Objeto para realizar a jogada.";
+                }
+
+            };
+           
+        });
+        
+        app.controller('jk_controller', function ($scope, $window) {
+
+            var idNewJogador = window.localStorage.getItem("iduser");
+            window.localStorage.clear();
+
+            if (idNewJogador == null || idNewJogador == "") {
+
+                $window.location.href = 'Inicio.html';
+            };
+
+            var ObjJ1 = {
+                id: 0,
+                pontos: 0
+            };
+
+            var ObjJ2 = {
+                id: 0,
+                pontos: 0
+            };
+
+            $scope.CriarPartida(idNewJogador);
+            $scope.getJogador(idNewJogador);
+            $scope.setQuadroObjs(ObjJ1, ObjJ2);
+
+            $scope.initJogada = function () {
+
+                if ($scope.historico.length >= 10) {
+                    $scope.Error = "Você já efetuo 10 jogadas, para continuar clique em 'Reiniciar Jogo' e entre novamente."
+                }
+                else
+                {
+                    $scope.startJogada();
+                }
+                             
+            };
+
+            $scope.reiniciarJogo = function () {
+                window.localStorage.clear();
+                $window.location.href = 'Inicio.html';
+            };
+
+        });
+
+    </script>
+
+</body>
+
+</html>
+

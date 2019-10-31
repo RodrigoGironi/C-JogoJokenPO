@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Rodrigo_MVCModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Jogador">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nome" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="data" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Objetos">
+    <Key>
+      <PropertyRef Name="idObj" />
+    </Key>
+    <Property Name="idObj" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nome" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="Rodrigo_MVCEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Jogador" EntityType="Self.Jogador" />
+    <EntitySet Name="Objetos" EntityType="Self.Objetos" />
+    <EntitySet Name="Partida" EntityType="Rodrigo_MVCModel.Partida" />
+    <EntitySet Name="Jogos" EntityType="Rodrigo_MVCModel.Jogos" />
+  </EntityContainer>
+  <EntityType Name="Partida">
+    <Key>
+      <PropertyRef Name="idPartida" />
+    </Key>
+    <Property Name="idPartida" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Data" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="idJogador" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Jogos">
+    <Key>
+      <PropertyRef Name="idJogo" />
+    </Key>
+    <Property Name="idJogo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idPartida" Type="Int32" Nullable="false" />
+    <Property Name="Ponto" Type="Int32" Nullable="false" />
+    <Property Name="idGanhador" Type="Int32" Nullable="false" />
+    <Property Name="Ganhador" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Jogador1" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Jogador2" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+  </EntityType>
+</Schema>

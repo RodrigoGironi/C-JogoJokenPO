@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Rodrigo_MVCModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Jogador">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nome" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="data" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Jogos">
+    <Key>
+      <PropertyRef Name="idJogo" />
+    </Key>
+    <Property Name="idJogo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idPartida" Type="int" Nullable="false" />
+    <Property Name="Ponto" Type="int" Nullable="false" />
+    <Property Name="idGanhador" Type="int" Nullable="false" />
+    <Property Name="Ganhador" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="Jogador1" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="Jogador2" Type="varchar" MaxLength="150" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Objetos">
+    <Key>
+      <PropertyRef Name="idObj" />
+    </Key>
+    <Property Name="idObj" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nome" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Partida">
+    <Key>
+      <PropertyRef Name="idPartida" />
+    </Key>
+    <Property Name="idPartida" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Data" Type="datetime" Nullable="false" />
+    <Property Name="idJogador" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="Rodrigo_MVCModelStoreContainer">
+    <EntitySet Name="Jogador" EntityType="Self.Jogador" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Jogos" EntityType="Self.Jogos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Objetos" EntityType="Self.Objetos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Partida" EntityType="Self.Partida" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

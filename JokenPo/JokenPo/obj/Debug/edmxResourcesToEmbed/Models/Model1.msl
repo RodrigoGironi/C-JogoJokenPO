@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Rodrigo_MVCModelStoreContainer" CdmEntityContainer="Rodrigo_MVCEntities">
+    <EntitySetMapping Name="Jogador">
+      <EntityTypeMapping TypeName="Rodrigo_MVCModel.Jogador">
+        <MappingFragment StoreEntitySet="Jogador">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+          <ScalarProperty Name="data" ColumnName="data" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Objetos">
+      <EntityTypeMapping TypeName="Rodrigo_MVCModel.Objetos">
+        <MappingFragment StoreEntitySet="Objetos">
+          <ScalarProperty Name="idObj" ColumnName="idObj" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Partida">
+      <EntityTypeMapping TypeName="Rodrigo_MVCModel.Partida">
+        <MappingFragment StoreEntitySet="Partida">
+          <ScalarProperty Name="idJogador" ColumnName="idJogador" />
+          <ScalarProperty Name="Data" ColumnName="Data" />
+          <ScalarProperty Name="idPartida" ColumnName="idPartida" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Jogos">
+      <EntityTypeMapping TypeName="Rodrigo_MVCModel.Jogos">
+        <MappingFragment StoreEntitySet="Jogos">
+          <ScalarProperty Name="Jogador2" ColumnName="Jogador2" />
+          <ScalarProperty Name="Jogador1" ColumnName="Jogador1" />
+          <ScalarProperty Name="Ganhador" ColumnName="Ganhador" />
+          <ScalarProperty Name="idGanhador" ColumnName="idGanhador" />
+          <ScalarProperty Name="Ponto" ColumnName="Ponto" />
+          <ScalarProperty Name="idPartida" ColumnName="idPartida" />
+          <ScalarProperty Name="idJogo" ColumnName="idJogo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
